@@ -4,6 +4,7 @@ import 'dart:math';
 
 void main() => runApp(MaterialApp(
       home: HomeView(),
+      darkTheme: ThemeData.dark(),
     ));
 
 class HomeView extends StatefulWidget {
@@ -12,7 +13,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
   double rTarget = Random().nextDouble();
   double gTarget = Random().nextDouble();
   double bTarget = Random().nextDouble();
@@ -39,7 +39,6 @@ class _HomeViewState extends State<HomeView> {
   }
 
   void calculateRang() {
-
     print(rTarget);
     print(gTarget);
     print(bTarget);
@@ -55,9 +54,8 @@ class _HomeViewState extends State<HomeView> {
     score = ((1.0 - diff) * 100.0 + 0.5).toInt();
 
     print(score);
-    
-    handleClickMe();
 
+    handleClickMe();
   }
 
   Future<void> handleClickMe() async {
@@ -66,10 +64,8 @@ class _HomeViewState extends State<HomeView> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: Text(
-              'Rang'),
-          content: Text(
-              '\nYour Score is $score'),
+          title: Text('Rang'),
+          content: Text('\nYour Score is $score'),
           actions: <Widget>[
             CupertinoDialogAction(
               child: Text('OK'),
