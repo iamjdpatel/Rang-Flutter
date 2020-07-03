@@ -88,85 +88,90 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: Text('Rang'),
       ),
-      body: Column(
-        children: <Widget>[
-          GestureDetector(
-            onTap: () {
-              setState(() {
-                updateNewRang();
-              });
-            },
-            child: Container(
-              margin: EdgeInsets.all(16),
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  updateNewRang();
+                });
+              },
+              child: Container(
+                margin: EdgeInsets.all(16),
+                height: 150.0,
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO((rTarget * 255).toInt(),
+                        (gTarget * 255).toInt(), (bTarget * 255).toInt(), 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    boxShadow: [
+                      BoxShadow(color: Colors.grey, blurRadius: 1.0)
+                    ]),
+              ),
+            ),
+            Text('Match this Rang'),
+            Divider(
+              height: 30.0,
+            ),
+            Container(
+              margin: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
               height: 150.0,
               decoration: BoxDecoration(
-                  color: Color.fromRGBO((rTarget * 255).toInt(),
-                      (gTarget * 255).toInt(), (bTarget * 255).toInt(), 1.0),
+                  color: Color.fromRGBO((rGuess * 255).toInt(),
+                      (gGuess * 255).toInt(), (bGuess * 255).toInt(), 1.0),
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 5.0)]),
+                  boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 1.0)]),
             ),
-          ),
-          Text('Match this Rang'),
-          Divider(
-            height: 30.0,
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
-            height: 150.0,
-            decoration: BoxDecoration(
-                color: Color.fromRGBO((rGuess * 255).toInt(),
-                    (gGuess * 255).toInt(), (bGuess * 255).toInt(), 1.0),
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 5.0)]),
-          ),
-          Container(
-            margin: EdgeInsets.all(16),
-            padding: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.all(Radius.circular(10.0))),
-            child: Column(
-              children: <Widget>[
-                Slider(
-                  value: rGuess,
-                  onChanged: setrvalue,
-                  activeColor: Colors.red,
-                  inactiveColor: Colors.grey,
-                ),
-                Slider(
-                    value: gGuess,
-                    onChanged: setgvalue,
-                    activeColor: Colors.green,
-                    inactiveColor: Colors.grey),
-                Slider(
-                    value: bGuess,
-                    onChanged: setbvalue,
-                    activeColor: Colors.blue,
-                    inactiveColor: Colors.grey),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          SizedBox(
-            height: 50.0,
-            width: MediaQuery.of(context).size.width - 32,
-            child: RaisedButton(
-              onPressed: () {
-                calculateRang();
-              },
-              color: CupertinoColors.systemGreen,
-              textColor: Colors.white,
-              child: Text(
-                'Calculate Rang',
-                style: TextStyle(fontSize: 20.0),
+            Container(
+              margin: EdgeInsets.all(16),
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.all(Radius.circular(10.0))),
+              child: Column(
+                children: <Widget>[
+                  Slider(
+                    value: rGuess,
+                    onChanged: setrvalue,
+                    activeColor: Colors.red,
+                    inactiveColor: Colors.grey,
+                  ),
+                  Slider(
+                      value: gGuess,
+                      onChanged: setgvalue,
+                      activeColor: Colors.green,
+                      inactiveColor: Colors.grey),
+                  Slider(
+                      value: bGuess,
+                      onChanged: setbvalue,
+                      activeColor: Colors.blue,
+                      inactiveColor: Colors.grey),
+                ],
               ),
-              shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(10.0)),
             ),
-          )
-        ],
+            // SizedBox(
+            //   height: 20.0,
+            // ),
+            Spacer(),
+            SizedBox(
+              height: 50.0,
+              width: MediaQuery.of(context).size.width - 32,
+              child: RaisedButton(
+                onPressed: () {
+                  calculateRang();
+                },
+                color: CupertinoColors.systemGreen,
+                textColor: Colors.white,
+                child: Text(
+                  'Calculate Rang',
+                  style: TextStyle(fontSize: 20.0),
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(10.0)),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
